@@ -13,11 +13,11 @@ const story = {
         Suspendisse id ligula accumsan, ultrices est quis, tristique libero. Integer 
         molestie euismod lacus, id sodales magna vehicula eget. Cras porta leo eu lacus 
         tincidunt, sed tincidunt eros feugiat. Ut dictum felis eget lorem vestibulum, ut 
-        consequat turpis varius. Do you go deeper into the woods or follow a faint trail to the right?
+        consequat turpis varius.
       `,
       choices: {
-        A1: "Go Deeper into the Woods",
-        A2: "Follow the Trail"
+        A1: "Choice A",
+        A2: "Choice B"
       },
       next: {
         A1: "A1",
@@ -30,11 +30,11 @@ const story = {
         dictum est id urna dapibus, non porttitor justo dignissim. Suspendisse vel dui id 
         nisi tristique ultricies. Vivamus sodales, nulla et tristique dignissim, lacus 
         felis ultrices arcu, non tincidunt dolor arcu et odio. Sed consectetur eros eget 
-        mollis tincidunt. Do you approach a clearing ahead or continue deeper?
+        mollis tincidunt.
       `,
       choices: {
-        A1a: "Approach the Clearing",
-        A1b: "Continue Deeper"
+        A1a: "Choice A",
+        A1b: "Choice B"
       },
       next: {
         A1a: "A1a",
@@ -47,11 +47,11 @@ const story = {
           dictum est id urna dapibus, non porttitor justo dignissim. Suspendisse vel dui id 
           nisi tristique ultricies. Vivamus sodales, nulla et tristique dignissim, lacus 
           felis ultrices arcu, non tincidunt dolor arcu et odio. Sed consectetur eros eget 
-          mollis tincidunt. Do you approach a clearing ahead or continue deeper?
+          mollis tincidunt.
         `,
         choices: {
-          A2a: "Approach the Clearing",
-          A2b: "Continue Deeper"
+          A2a: "Choice A",
+          A2b: "Choice B"
         },
         next: {
           A2a: "A1a",
@@ -72,11 +72,11 @@ const story = {
           Suspendisse id ligula accumsan, ultrices est quis, tristique libero. Integer 
           molestie euismod lacus, id sodales magna vehicula eget. Cras porta leo eu lacus 
           tincidunt, sed tincidunt eros feugiat. Ut dictum felis eget lorem vestibulum, ut 
-          consequat turpis varius. Do you go deeper into the woods or follow a faint trail to the right?
+          consequat turpis varius.
         `,
         choices: {
-          B1a: "Go Deeper into the Woods",
-          B2b: "Follow the Trail"
+          B1a: "Choice A",
+          B2b: "Choice B"
         },
         next: {
           B1a: "A1",
@@ -97,11 +97,11 @@ const story = {
           Suspendisse id ligula accumsan, ultrices est quis, tristique libero. Integer 
           molestie euismod lacus, id sodales magna vehicula eget. Cras porta leo eu lacus 
           tincidunt, sed tincidunt eros feugiat. Ut dictum felis eget lorem vestibulum, ut 
-          consequat turpis varius. Do you go deeper into the woods or follow a faint trail to the right?
+          consequat turpis varius.
         `,
         choices: {
-          B1: "Go Deeper into the Woods",
-          B2: "Follow the Trail"
+          B1: "Choice A",
+          B2: "Choice B"
         },
         next: {
           B1: "A1",
