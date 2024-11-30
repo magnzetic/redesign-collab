@@ -1,0 +1,356 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #2e2e2e;
+    color: #f5f5f5;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative; /* To position the buttons correctly */
+}
+
+/* Define the custom font */
+@font-face {
+    font-family: 'CustomFont';
+    src: url('loading.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Style for username display */
+#username-display-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em; /* Font size of username */
+    font-weight: bold;
+    font-family: 'CustomFont', Arial, sans-serif; /* Use the custom font */
+    text-align: center;
+    z-index: 2; /* Make sure username is on top of blobs */
+}
+
+/* Container for loading screen */
+#loading-screen {
+    position: fixed; /* Fixed position to take full screen */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    
+    /* Gradient background: Upper left to bottom right */
+    background: linear-gradient(45deg, #1E201E, #697565);
+    
+    /* Set text color to black for loading screen */
+    color: #000000;
+}
+
+/* Second blob with custom SVG */
+#blob-top {
+    position: absolute;
+    top: 28%; /* Adjust the top position to place it above the first blob */
+    left: 50%;
+    opacity: 0.1;
+    transform: translateX(-50%);
+    width: 300px; /* Adjust width and height based on the SVG size */
+    height: 300px;
+    z-index: 0; /* Blob will be below the username but above the first blob */
+}
+
+#blob-top svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Username flickering effect */
+.username {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Main Menu Styles */
+#main-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
+    background:
+        linear-gradient(to bottom right, rgba(56, 76, 100, 0.4) 1%, rgba(255, 255, 255, 0.5) 50%) no-repeat, /* First gradient with opacity */
+        linear-gradient(to top left, rgba(36, 7, 80, 0.3) 1%, rgba(255, 255, 255, 0.4) 50%) no-repeat; /* Second gradient with opacity */
+    background-size: 100% 50%, 100% 50%; /* First gradient takes the top half, second takes the bottom half */
+    background-position: top left, bottom right; /* Position the first gradient in the top left and second one in bottom right */
+    padding: 0;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+#main-menu-container {
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    border-radius: 10px; /* Optional rounded corners */
+    padding: 40px 60px; /* Add some padding for spacing */
+    max-width: 600px; /* Optional: Set a max width */
+    width: 50%; /* Ensure it takes full width until max-width */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Optional shadow for visibility */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center the content */
+    align-items: center; /* Horizontally center the content */
+    position: absolute; /* Change to absolute positioning */
+    top: 50%; /* Move to the center vertically */
+    left: 50%; /* Move to the center horizontally */
+    transform: translate(-50%, -50%); /* Correct the position by translating back */
+}
+
+/* Main Menu Title */
+#main-menu-container h1 {
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #ffdd57;
+    margin-bottom: 20px;
+}
+
+/* Main Menu Paragraph */
+#main-menu-container p {
+    text-align: justify;
+    font-size: 1.2em;
+    color: #ffffff; /* Ensure text is readable on dark background */
+    margin-bottom: 30px;
+    line-height: 1.6;
+    font-family: 'Times New Roman', serif;
+}
+
+/* Custom Font for Main Menu Button */
+@font-face {
+    font-family: 'CustomButtonFont';
+    src: url('mulai.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Main Menu Button Styles */
+#main-menu-container button {
+    padding: 15px 30px;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 32px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    font-family: 'CustomButtonFont', sans-serif; /* Apply custom font */
+}
+
+/* Button Hover Effect */
+#main-menu-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Button Active Effect */
+#main-menu-container button:active {
+    background-color: #004080;
+}
+
+/* Button Disabled Effect */
+#main-menu-container button:disabled {
+    background-color: #4e4e4e;
+    cursor: not-allowed;
+}
+
+/* App content */
+#app {
+    text-align: center;
+    max-width: 600px;
+    position: relative;
+    padding-top: 40px; /* Add space to avoid overlap with buttons */
+}
+
+/* Mode toggle buttons */
+#mode-toggle {
+    position: fixed;  /* Fixed position to stay at the top-right */
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 10; /* Ensure the buttons are always above other content */
+}
+
+/* Button styles */
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:disabled {
+    background-color: #4e4e4e;
+    cursor: not-allowed;
+}
+
+/* Choices section */
+.choices {
+    margin-top: 10px;
+}
+
+/* Paragraph styles in the chapter */
+.chapter p {
+    text-align: justify;
+    line-height: 1.6;
+    font-size: 16px; /* Default font size */
+    font-family: 'Times New Roman', serif;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #f5f5f5;
+}
+
+.chapter.dark-mode {
+    background: #333;
+}
+
+/* Light Mode Styles */
+body.light-mode {
+    background-color: #f5f5f5;
+    color: #000000;
+}
+
+.chapter.light-mode {
+    background: #fff;
+}
+
+/* Transition for revealing and bump effect */
+@keyframes revealAndBump {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Chapter reveal animation */
+.chapter {
+    background: rgba(0, 0, 0, 0.3); /* Semi-transparent black background */
+    border-radius: 10px; /* Optional: adds rounded corners */
+    padding: 20px; /* Add some padding inside the container */
+    margin: 10px 0; /* Optional: space between the containers */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Optional: adds a shadow for better visibility */
+    font-family: 'Times New Roman', serif; /* Keep the same font */
+    animation: revealAndBump 0.6s ease-out; /* Animation for reveal */
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+/* Show class for active chapter */
+.chapter.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+    align-items: center;
+}
+
+#app {
+    overflow-y: auto;
+    height: auto;
+}
+
+/* Fixed position for the mode toggle */
+#mode-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+/* Mode toggle button styles */
+#mode-toggle button {
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+}
+
+/* Mode toggle span (font size label) */
+#mode-toggle span {
+    font-size: 16px; /* Match the font size to the buttons */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    font-weight: bold;
+    user-select: none; /* Disable text selection */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+/* Dark Mode for Mode Toggle */
+body.dark-mode #mode-toggle span {
+    color: #fff; /* White font for dark mode */
+}
+
+/* Light Mode for Mode Toggle */
+body.light-mode #mode-toggle span {
+    color: #000; /* Black font for light mode */
+}
+
+/* Transparent buttons when scrolling */
+#mode-toggle.transparent button {
+    opacity: 0.3;
+    background-color: rgba(0, 123, 255, 0.3);
+}
+
+/* Hide the font size label when scrolling */
+#mode-toggle.transparent span {
+    opacity: 0; /* Hide the Aa label */
+}
+
+/* Button hover effects */
+#mode-toggle button:hover {
+    background-color: #0056b3;
+}
+
+#mode-toggle button:disabled {
+    background-color: #4e4e4e;
+    cursor: not-allowed;
+}
