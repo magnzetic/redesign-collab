@@ -26,7 +26,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 2em; /* Font size of username */
+    font-size: 1.7em; /* Font size of username */
     font-weight: bold;
     font-family: 'CustomFont', Arial, sans-serif; /* Use the custom font */
     text-align: center;
@@ -47,7 +47,7 @@ body {
     text-align: center;
     
     /* Gradient background: Upper left to bottom right */
-    background: linear-gradient(45deg, #1E201E, #697565);
+    background: linear-gradient(45deg, #444B51, #AEB1BA);
     
     /* Set text color to black for loading screen */
     color: #000000;
@@ -58,7 +58,7 @@ body {
     position: absolute;
     top: 28%; /* Adjust the top position to place it above the first blob */
     left: 50%;
-    opacity: 0.1;
+    opacity: 0.8;
     transform: translateX(-50%);
     width: 300px; /* Adjust width and height based on the SVG size */
     height: 300px;
@@ -76,6 +76,48 @@ body {
     transition: opacity 0.5s ease-in-out;
 }
 
+/* Add fade-out animation for loading screen */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        visibility: visible;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* Apply animation to the loading screen */
+#loading-screen.fade-out {
+    animation: fadeOut 0.3s ease-out;
+    pointer-events: none; /* Prevent interactions while fading out */
+    opacity: 0; /* Ensure it's hidden after the animation */
+    visibility: hidden;
+}
+
+/* Fade-in animation for the main menu */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#main-menu.fade-in {
+    animation: fadeIn 0.3s ease-in;
+    opacity: 1;
+    visibility: visible;
+}
+
 /* Main Menu Styles */
 #main-menu {
     position: fixed;
@@ -84,20 +126,18 @@ body {
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: center; /* Horizontally center */
-    align-items: center; /* Vertically center */
-    background:
-        linear-gradient(to bottom right, rgba(56, 76, 100, 0.4) 1%, rgba(255, 255, 255, 0.5) 50%) no-repeat, /* First gradient with opacity */
-        linear-gradient(to top left, rgba(36, 7, 80, 0.3) 1%, rgba(255, 255, 255, 0.4) 50%) no-repeat; /* Second gradient with opacity */
-    background-size: 100% 50%, 100% 50%; /* First gradient takes the top half, second takes the bottom half */
-    background-position: top left, bottom right; /* Position the first gradient in the top left and second one in bottom right */
-    padding: 0;
-    box-sizing: border-box;
-    z-index: 1;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom right, #506D8F, #AEB1BA);
+    z-index: 2;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
 }
 
 #main-menu-container {
-    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    backdrop-filter: blur(11.1px);
+    background-color: rgba(255, 255, 255, 0.3); /* Semi-transparent background */
     border-radius: 10px; /* Optional rounded corners */
     padding: 40px 60px; /* Add some padding for spacing */
     max-width: 600px; /* Optional: Set a max width */
@@ -113,13 +153,22 @@ body {
     transform: translate(-50%, -50%); /* Correct the position by translating back */
 }
 
+.moodboard-image {
+    max-width: 600px;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
 /* Main Menu Title */
 #main-menu-container h1 {
+    font-family: "Seashore"; 
     text-align: center;
-    font-size: 2.5em;
+    font-size: 5.5em;
     font-weight: bold;
-    color: #ffdd57;
+    color: #000000;
     margin-bottom: 20px;
+    margin-top: 0px;
 }
 
 /* Main Menu Paragraph */
@@ -143,7 +192,7 @@ body {
 /* Main Menu Button Styles */
 #main-menu-container button {
     padding: 15px 30px;
-    background-color: #007BFF;
+    background-color: #444B51;
     border: none;
     border-radius: 5px;
     color: #fff;
@@ -156,7 +205,7 @@ body {
 
 /* Button Hover Effect */
 #main-menu-container button:hover {
-    background-color: #0056b3;
+    background-color: #506D8F;
 }
 
 /* Button Active Effect */
@@ -168,6 +217,76 @@ body {
 #main-menu-container button:disabled {
     background-color: #4e4e4e;
     cursor: not-allowed;
+}
+
+/* General styles for hidden elements */
+.hidden {
+    display: none;
+    visibility: hidden;
+}
+
+/* Styles for the second main menu */
+#main-menu-2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom right, #506D8F, #AEB1BA);
+    z-index: 2;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+#main-menu-2.fade-in {
+    opacity: 1;
+    visibility: visible;
+}
+
+#main-menu-2-container {
+    width: 60%;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 40px 60px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    text-align: center;
+}
+
+#main-menu-2-container h1 {
+    font-family: "Seashore";
+    font-size: 5.5em;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+#main-menu-2-container p {
+    font-family: 'Times New Roman', serif;
+    font-size: 1.2em;
+    color: #ffffff;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+#main-menu-2-container button {
+    padding: 15px 30px;
+    background-color: #1E3147;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 32px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'CustomButtonFont', sans-serif;
+}
+
+#main-menu-2-container button:hover {
+    background-color: #444B51;
 }
 
 /* App content */
@@ -192,7 +311,7 @@ body {
 button {
     padding: 10px 20px;
     margin: 10px;
-    background-color: #007BFF;
+    background-color: #506D8F;
     border: none;
     border-radius: 5px;
     color: #fff;
@@ -201,11 +320,11 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #313F66;
 }
 
 button:disabled {
-    background-color: #4e4e4e;
+    background-color: #9E8775;
     cursor: not-allowed;
 }
 
@@ -224,22 +343,22 @@ button:disabled {
 
 /* Dark Mode Styles */
 body.dark-mode {
-    background-color: #121212;
-    color: #f5f5f5;
+    background-color: #202326;
+    color: #F1EEE8;
 }
 
 .chapter.dark-mode {
-    background: #333;
+    background: #202326;
 }
 
 /* Light Mode Styles */
 body.light-mode {
-    background-color: #f5f5f5;
+    background-color: #F1EEE8;
     color: #000000;
 }
 
 .chapter.light-mode {
-    background: #fff;
+    background: #F1EEE8;
 }
 
 /* Transition for revealing and bump effect */
@@ -260,7 +379,7 @@ body.light-mode {
 
 /* Chapter reveal animation */
 .chapter {
-    background: rgba(0, 0, 0, 0.3); /* Semi-transparent black background */
+    background: rgba(182, 182, 182, 0.17); /* Semi-transparent black background */
     border-radius: 10px; /* Optional: adds rounded corners */
     padding: 20px; /* Add some padding inside the container */
     margin: 10px 0; /* Optional: space between the containers */
@@ -303,7 +422,7 @@ html {
 #mode-toggle button {
     padding: 10px 20px;
     margin: 10px;
-    background-color: #007BFF;
+    background-color: #445971;
     border: none;
     border-radius: 5px;
     color: #fff;
@@ -337,7 +456,7 @@ body.light-mode #mode-toggle span {
 /* Transparent buttons when scrolling */
 #mode-toggle.transparent button {
     opacity: 0.3;
-    background-color: rgba(0, 123, 255, 0.3);
+    background-color: rgba(0, 123, 255, 0.2);
 }
 
 /* Hide the font size label when scrolling */
@@ -347,7 +466,7 @@ body.light-mode #mode-toggle span {
 
 /* Button hover effects */
 #mode-toggle button:hover {
-    background-color: #0056b3;
+    background-color: #91C1F8;
 }
 
 #mode-toggle button:disabled {
