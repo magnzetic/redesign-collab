@@ -54,36 +54,12 @@ const story = {
           A2b: "Choice B"
         },
         next: {
-          A2a: "A1a",
-          A2b: "A1b"
+          A2a: "A2a",
+          A2b: "A2b"
         }
       },
+
     B: {
-        text: `
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel ligula sit amet mi 
-          tincidunt dapibus. Maecenas non fringilla orci. Proin accumsan risus non lectus 
-          convallis, nec vulputate massa suscipit. Nullam vestibulum, est at venenatis 
-          tincidunt, justo nisi vestibulum libero, vitae facilisis justo enim at arcu.\n\n 
-          
-          Aliquam erat volutpat. Ut ullamcorper lacus a tellus bibendum, eget pulvinar 
-          lectus tempor. Sed at justo nisi. Fusce nec erat venenatis, fringilla turpis ut, 
-          tincidunt purus. Donec bibendum massa at efficitur scelerisque.
-    
-          Suspendisse id ligula accumsan, ultrices est quis, tristique libero. Integer 
-          molestie euismod lacus, id sodales magna vehicula eget. Cras porta leo eu lacus 
-          tincidunt, sed tincidunt eros feugiat. Ut dictum felis eget lorem vestibulum, ut 
-          consequat turpis varius.
-        `,
-        choices: {
-          B1a: "Choice A",
-          B2b: "Choice B"
-        },
-        next: {
-          B1a: "A1",
-          B2b: "A2"
-        }
-      },
-      B1a: {
         text: `
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel ligula sit amet mi 
           tincidunt dapibus. Maecenas non fringilla orci. Proin accumsan risus non lectus 
@@ -104,10 +80,60 @@ const story = {
           B2: "Choice B"
         },
         next: {
-          B1: "A1",
-          B2: "A2"
+          B1: "B1",
+          B2: "B2"
         }
-      }
+      },
+      B1: {
+        text: `
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel ligula sit amet mi 
+          tincidunt dapibus. Maecenas non fringilla orci. Proin accumsan risus non lectus 
+          convallis, nec vulputate massa suscipit. Nullam vestibulum, est at venenatis 
+          tincidunt, justo nisi vestibulum libero, vitae facilisis justo enim at arcu.\n\n 
+          
+          Aliquam erat volutpat. Ut ullamcorper lacus a tellus bibendum, eget pulvinar 
+          lectus tempor. Sed at justo nisi. Fusce nec erat venenatis, fringilla turpis ut, 
+          tincidunt purus. Donec bibendum massa at efficitur scelerisque.
+    
+          Suspendisse id ligula accumsan, ultrices est quis, tristique libero. Integer 
+          molestie euismod lacus, id sodales magna vehicula eget. Cras porta leo eu lacus 
+          tincidunt, sed tincidunt eros feugiat. Ut dictum felis eget lorem vestibulum, ut 
+          consequat turpis varius.
+        `,
+        choices: {
+          B1a: "Choice A",
+          B2a: "Choice B"
+        },
+        next: {
+          B1a: "B1a",
+          B2a: "B2a"
+        }
+      },
+      B2: {
+        text: `
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel ligula sit amet mi 
+          tincidunt dapibus. Maecenas non fringilla orci. Proin accumsan risus non lectus 
+          convallis, nec vulputate massa suscipit. Nullam vestibulum, est at venenatis 
+          tincidunt, justo nisi vestibulum libero, vitae facilisis justo enim at arcu.\n\n 
+          
+          Aliquam erat volutpat. Ut ullamcorper lacus a tellus bibendum, eget pulvinar 
+          lectus tempor. Sed at justo nisi. Fusce nec erat venenatis, fringilla turpis ut, 
+          tincidunt purus. Donec bibendum massa at efficitur scelerisque.
+    
+          Suspendisse id ligula accumsan, ultrices est quis, tristique libero. Integer 
+          molestie euismod lacus, id sodales magna vehicula eget. Cras porta leo eu lacus 
+          tincidunt, sed tincidunt eros feugiat. Ut dictum felis eget lorem vestibulum, ut 
+          consequat turpis varius.
+        `,
+        choices: {
+          B2a: "Choice A",
+          B2a: "Choice B"
+        },
+        next: {
+          B2a: "B2a",
+          B2a: "B2a"
+        }
+      },
   };
   
   let fontSize = 16; // Default font size
@@ -222,43 +248,63 @@ const story = {
   document.addEventListener('DOMContentLoaded', function() {
     const loadingScreen = document.getElementById('loading-screen');
     const usernameDisplay = document.getElementById('username-display');
-    const app = document.getElementById('app');
     const mainMenu = document.getElementById('main-menu');
     
     const usernames = ['Kichuune', 'shiuyalan']; // Add the usernames here
     let currentIndex = 0;
     let flickerDuration = 1000; // 1 second for each flicker
-    let displayDuration = 5000; // 4 seconds total
+    let displayDuration = 4800; // Total time for loading screen
     
     // Function to alternate the usernames with flickering effect
     let usernameDisplayInterval = setInterval(() => {
       usernameDisplay.textContent = usernames[currentIndex];
       
-      // Fade in/out effect
+      // Fade in/out effect for the username display
       usernameDisplay.style.opacity = 1;
       setTimeout(() => {
         usernameDisplay.style.opacity = 0;
       }, flickerDuration / 2); // Fade out after half the interval
       
-      currentIndex = (currentIndex + 1) % usernames.length; // Toggle between 0 and 1
+      currentIndex = (currentIndex + 1) % usernames.length; // Toggle between usernames
     }, flickerDuration); // Change the username every second
     
-    // After 4 seconds, hide the loading screen and show the main menu
+    // After the display duration, transition from loading screen to main menu
     setTimeout(() => {
-      clearInterval(usernameDisplayInterval);
-      loadingScreen.style.display = 'none'; // Hide loading screen
-      mainMenu.style.display = 'block'; // Show main menu
-    }, displayDuration); // Stop after 4 seconds and display the main menu
-    
-    // Event listener for the start game button
-    const startGameButton = document.getElementById('start-game');
-    
-    startGameButton.addEventListener('click', () => {
-      mainMenu.style.display = 'none'; // Hide the main menu
-      app.style.display = 'block'; // Show the main app content
+      clearInterval(usernameDisplayInterval); // Stop alternating usernames
+  
+      // Apply fade-out to the loading screen
+      loadingScreen.classList.add('fade-out');
+      
+      // After the fade-out animation, hide loading screen and show the main menu
+      setTimeout(() => {
+        loadingScreen.style.display = 'none'; // Hide loading screen
+        mainMenu.style.display = 'block'; // Show main menu
+        mainMenu.classList.add('fade-in'); // Apply fade-in to the main menu
+      }, 500); // Match this timeout to the fade-out animation duration
+    }, displayDuration);
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const mainMenu = document.getElementById('main-menu');
+    const mainMenu2 = document.getElementById('main-menu-2');
+    const goToMenu2Button = document.getElementById('go-to-menu-2');
+    const startButton = document.getElementById('start-game');
+  
+    // Transition to second main menu
+    goToMenu2Button.addEventListener('click', () => {
+      mainMenu.classList.add('fade-out');
+      setTimeout(() => {
+        mainMenu.style.display = 'none';
+        mainMenu2.style.display = 'flex';
+        mainMenu2.classList.add('fade-in');
+      }, 500); // Match this to the fade-out duration
+    });
+  
+    // Start button logic
+    startButton.addEventListener('click', () => {
+        mainMenu2.style.display = 'none'; // Hide the main menu
+        app.style.display = 'block'; // Show the main app content
+      // Add any further logic for starting your application here
     });
   });
-  
-  
-  
   
