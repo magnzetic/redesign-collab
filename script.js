@@ -102,11 +102,11 @@ const story = {
         `,
         choices: {
           B1a: "Choice A",
-          B2a: "Choice B"
+          B1b: "Choice B"
         },
         next: {
           B1a: "B1a",
-          B2a: "B2a"
+          B1b: "B2a"
         }
       },
       B2: {
@@ -127,70 +127,100 @@ const story = {
         `,
         choices: {
           B2a: "Choice A",
-          B2a: "Choice B"
+          B2b: "Choice B"
         },
         next: {
           B2a: "B2a",
-          B2a: "B2a"
+          B2b: "B2a"
         }
       },
+      B2a: {
+        text: `
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel ligula sit amet mi 
+          tincidunt dapibus. Maecenas non fringilla orci. Proin accumsan risus non lectus 
+          convallis, nec vulputate massa suscipit. Nullam vestibulum, est at venenatis 
+          tincidunt, justo nisi vestibulum libero, vitae facilisis justo enim at arcu.\n\n 
+          
+          Aliquam erat volutpat. Ut ullamcorper lacus a tellus bibendum, eget pulvinar 
+          lectus tempor. Sed at justo nisi. Fusce nec erat venenatis, fringilla turpis ut, 
+          tincidunt purus. Donec bibendum massa at efficitur scelerisque.
+    
+          Suspendisse id ligula accumsan, ultrices est quis, tristique libero. Integer 
+          molestie euismod lacus, id sodales magna vehicula eget. Cras porta leo eu lacus 
+          tincidunt, sed tincidunt eros feugiat. Ut dictum felis eget lorem vestibulum, ut 
+          consequat turpis varius.
+        `,
+      }
   };
   
   let fontSize = 16; // Default font size
   
   function choose(path) {
     if (!story[path]) return; // Ensure the path exists
-  
+
     const storyContainer = document.getElementById("story-container");
     const nextStory = story[path];
-  
+
     // Disable all buttons in the current chapter
     const currentChapter = storyContainer.lastElementChild;
-    const buttons = currentChapter.querySelectorAll("button");
-    buttons.forEach(button => button.disabled = true);
-  
+    if (currentChapter) {
+        const buttons = currentChapter.querySelectorAll("button");
+        buttons.forEach(button => button.disabled = true);
+    }
+
     // Create a new chapter element
     const chapterDiv = document.createElement("div");
-    chapterDiv.classList.add("chapter"); // Add the base class
-  
+    chapterDiv.classList.add("chapter");
+
     // Add narration text with proper newlines
     const storyText = document.createElement("p");
     const formattedText = nextStory.text
-      .trim()
-      .replace(/\n\s*\n/g, "<br><br>");
+        .trim()
+        .replace(/\n\s*\n/g, "<br><br>");
     storyText.innerHTML = formattedText;
-    
-    // Set the same font size as the current font size
+
     storyText.style.fontSize = fontSize + 'px';
-  
     chapterDiv.appendChild(storyText);
-  
-    // Add choices if available
-    if (Object.keys(nextStory.choices).length > 0) {
-      const choicesDiv = document.createElement("div");
-      choicesDiv.classList.add("choices");
-  
-      Object.keys(nextStory.choices).forEach(choiceKey => {
-        const button = document.createElement("button");
-        button.textContent = nextStory.choices[choiceKey];
-        button.onclick = () => choose(nextStory.next[choiceKey]);
-        choicesDiv.appendChild(button);
-      });
-  
-      chapterDiv.appendChild(choicesDiv);
+
+    // Check if the chapter has choices
+    if (nextStory.choices && Object.keys(nextStory.choices).length > 0) {
+        const choicesDiv = document.createElement("div");
+        choicesDiv.classList.add("choices");
+
+        Object.keys(nextStory.choices).forEach(choiceKey => {
+            const button = document.createElement("button");
+            button.textContent = nextStory.choices[choiceKey];
+            button.onclick = () => choose(nextStory.next[choiceKey]);
+            choicesDiv.appendChild(button);
+        });
+
+        chapterDiv.appendChild(choicesDiv);
+    } else {
+        // If no choices, indicate the end of the story
+        const endMessage = document.createElement("p");
+
+        // Add a paragraph to the body after the last chapter
+        addFinalParagraph("Website development by: @shiuyalan on twitter.");
     }
-  
+
     // Append the chapter to the container
     storyContainer.appendChild(chapterDiv);
-  
+
     // Trigger the "show" class to start the reveal animation
     setTimeout(() => {
-      chapterDiv.classList.add("show");
+        chapterDiv.classList.add("show");
     }, 50);
-  
+
     // Scroll to the newly added chapter smoothly
     chapterDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
+}
+
+function addFinalParagraph(text) {
+  const finalParagraph = document.createElement("p");
+  finalParagraph.textContent = text;
+  finalParagraph.classList.add("final-paragraph");
+  document.body.appendChild(finalParagraph);
+}
   
   document.addEventListener('DOMContentLoaded', function() {
     const darkModeToggle = document.getElementById('dark-mode-toggle');
@@ -250,7 +280,7 @@ const story = {
     const usernameDisplay = document.getElementById('username-display');
     const mainMenu = document.getElementById('main-menu');
     
-    const usernames = ['Kichuune', 'shiuyalan']; // Add the usernames here
+    const usernames = ['Kichuunee', 'shiuyalan']; // Add the usernames here
     let currentIndex = 0;
     let flickerDuration = 1000; // 1 second for each flicker
     let displayDuration = 4800; // Total time for loading screen
