@@ -286,25 +286,33 @@ const story = {
 
   document.addEventListener('DOMContentLoaded', function () {
     const mainMenu = document.getElementById('main-menu');
-    const mainMenu2 = document.getElementById('main-menu-2');
-    const goToMenu2Button = document.getElementById('go-to-menu-2');
+    const container1 = document.getElementById('container-1');
+    const container2 = document.getElementById('container-2');
+    const nextPageButton = document.getElementById('next-page');
     const startButton = document.getElementById('start-game');
   
-    // Transition to second main menu
-    goToMenu2Button.addEventListener('click', () => {
-      mainMenu.classList.add('fade-out');
-      setTimeout(() => {
-        mainMenu.style.display = 'none';
-        mainMenu2.style.display = 'flex';
-        mainMenu2.classList.add('fade-in');
-      }, 500); // Match this to the fade-out duration
+    let currentContainer = 1;
+  
+    // Handle the transition between the containers
+    nextPageButton.addEventListener('click', () => {
+      if (currentContainer === 1) {
+        container1.classList.add('slide-out');
+        container2.classList.add('slide-left');
+  
+        setTimeout(() => {
+          container1.style.display = 'none';
+          container2.style.display = 'block';
+          currentContainer = 2;
+        }, 500); // Match this to the animation duration
+      }
     });
   
-    // Start button logic
+    // Handle the start button
     startButton.addEventListener('click', () => {
-        mainMenu2.style.display = 'none'; // Hide the main menu
-        app.style.display = 'block'; // Show the main app content
+      mainMenu.style.display = 'none'; // Hide the main menu
+      app.style.display = 'block'; // Show the main app content
       // Add any further logic for starting your application here
     });
   });
+  
   
