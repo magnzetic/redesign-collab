@@ -135,7 +135,7 @@ body {
     transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
 }
 
-#main-menu-container {
+#container-1 {
     backdrop-filter: blur(11.1px);
     background-color: rgba(255, 255, 255, 0.3); /* Semi-transparent background */
     border-radius: 10px; /* Optional rounded corners */
@@ -161,10 +161,10 @@ body {
 }
 
 /* Main Menu Title */
-#main-menu-container h1 {
+#container-1 h1 {
     font-family: "Seashore"; 
     text-align: center;
-    font-size: 5.5em;
+    font-size: 4em;
     font-weight: bold;
     color: #000000;
     margin-bottom: 20px;
@@ -172,7 +172,7 @@ body {
 }
 
 /* Main Menu Paragraph */
-#main-menu-container p {
+#container-1 p {
     text-align: justify;
     font-size: 1.2em;
     color: #ffffff; /* Ensure text is readable on dark background */
@@ -190,13 +190,13 @@ body {
 }
 
 /* Main Menu Button Styles */
-#main-menu-container button {
+#container-1 button {
     padding: 15px 30px;
     background-color: #444B51;
     border: none;
     border-radius: 5px;
     color: #fff;
-    font-size: 32px;
+    font-size: 28px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-top: 20px;
@@ -204,17 +204,17 @@ body {
 }
 
 /* Button Hover Effect */
-#main-menu-container button:hover {
+#container-1 button:hover {
     background-color: #506D8F;
 }
 
 /* Button Active Effect */
-#main-menu-container button:active {
+#container-1 button:active {
     background-color: #004080;
 }
 
 /* Button Disabled Effect */
-#main-menu-container button:disabled {
+#container-1 button:disabled {
     background-color: #4e4e4e;
     cursor: not-allowed;
 }
@@ -226,68 +226,85 @@ body {
 }
 
 /* Styles for the second main menu */
-#main-menu-2 {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(to bottom right, #506D8F, #AEB1BA);
-    z-index: 2;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-}
-
-#main-menu-2.fade-in {
-    opacity: 1;
-    visibility: visible;
-}
-
-#main-menu-2-container {
-    width: 60%;
+#container-2 {
+    width: 70%;
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     padding: 40px 60px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     max-width: 600px;
+    max-height: 80%;
     text-align: center;
+    justify-content: center; /* Vertically center the content */
+    align-items: center; /* Horizontally center the content */
+    display: flex;
+    position: absolute; /* Change to absolute positioning */
+    top: 50%; /* Move to the center vertically */
+    left: 50%; /* Move to the center horizontally */
+    transform: translate(-50%, -50%); /* Correct the position by translating back */
 }
 
-#main-menu-2-container h1 {
+#container-2 h1 {
     font-family: "Seashore";
     font-size: 5.5em;
     font-weight: bold;
     color: #ffffff;
     margin-bottom: 20px;
+    margin-top: 0px;
 }
 
-#main-menu-2-container p {
+#container-2 p {
     font-family: 'Times New Roman', serif;
-    font-size: 1.2em;
+    font-size: 1.3em;
     color: #ffffff;
     margin-bottom: 30px;
     line-height: 1.6;
+    text-align: justify;
 }
 
-#main-menu-2-container button {
+#container-2 button {
     padding: 15px 30px;
     background-color: #1E3147;
     border: none;
     border-radius: 5px;
     color: #fff;
-    font-size: 32px;
+    font-size: 28px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     font-family: 'CustomButtonFont', sans-serif;
 }
 
-#main-menu-2-container button:hover {
+#container-2 button:hover {
     background-color: #444B51;
 }
+
+.slide-left {
+    animation: 1s slide-left;
+  }
+  @keyframes slide-left {
+    from {
+      margin-left: 100%;
+    }
+    to {
+      margin-left: 0%;
+    }
+  }
+
+  .slide-out {
+    animation: 1s slide-out;
+  }
+  @keyframes slide-out {
+    from {
+      margin-left: 0%;
+    }
+    to {
+      margin-left: -100%;
+    }
+  }
+
+  #main-menu.fade-out {
+    opacity: 0;
+  }
 
 /* App content */
 #app {
