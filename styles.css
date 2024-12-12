@@ -11,14 +11,6 @@ body {
     position: relative; /* To position the buttons correctly */
 }
 
-/* Define the custom font */
-@font-face {
-    font-family: 'CustomFont';
-    src: url('loading.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
 /* Style for username display */
 #username-display-container {
     position: relative;
@@ -28,9 +20,8 @@ body {
     align-items: center;
     font-size: 1.7em; /* Font size of username */
     font-weight: bold;
-    font-family: 'CustomFont', Arial, sans-serif; /* Use the custom font */
+    font-family: 'Built Titling', sans-serif;
     z-index: 2; /* Make sure username is on top of blobs */
-    margin-left: 15px;
 }
 
 /* Container for loading screen */
@@ -233,7 +224,7 @@ body {
     border-radius: 10px;
     padding: 40px 60px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    max-width: 600px;
+    max-width: 60%;
     max-height: 80%;
     text-align: center;
     justify-content: center; /* Vertically center the content */
