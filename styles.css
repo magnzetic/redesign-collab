@@ -22,7 +22,6 @@ body {
     font-weight: bold;
     font-family: 'Built Titling', sans-serif;
     z-index: 2; /* Make sure username is on top of blobs */
-    margin-top: 10px;
 }
 
 /* Container for loading screen */
@@ -46,15 +45,35 @@ body {
 }
 
 /* Second blob with custom SVG */
+/* Keyframes for the blob scaling animation */
+@keyframes blobPulse {
+    0% {
+        transform: translateX(-50%) scale(1); /* Start at normal size */
+    }
+    25% {
+        transform: translateX(-50%) scale(1.2); /* Grow slightly bigger */
+    }
+    50% {
+        transform: translateX(-50%) scale(1); /* Back to normal size */
+    }
+    75% {
+        transform: translateX(-50%) scale(0.8); /* Shrink slightly smaller */
+    }
+    100% {
+        transform: translateX(-50%) scale(1); /* Back to normal size */
+    }
+}
+
 #blob-top {
     position: absolute;
-    top: 28%; /* Adjust the top position to place it above the first blob */
+    top: 28%; /* Adjust the top position */
     left: 50%;
     opacity: 0.8;
     transform: translateX(-50%);
-    width: 300px; /* Adjust width and height based on the SVG size */
+    width: 300px;
     height: 300px;
-    z-index: 0; /* Blob will be below the username but above the first blob */
+    z-index: 0;
+    animation: blobPulse 4s infinite ease-in-out; /* Apply animation */
 }
 
 #blob-top svg {
@@ -263,7 +282,7 @@ body {
     border: none;
     border-radius: 5px;
     color: #fff;
-    font-size: 22px;
+    font-size: 28px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     font-family: 'CustomButtonFont', sans-serif;
@@ -295,10 +314,6 @@ body {
     to {
       margin-left: -100%;
     }
-  }
-
-  #main-menu.fade-out {
-    opacity: 0;
   }
 
 /* App content */
